@@ -12,3 +12,35 @@ Quick & Dirty notes for installation on Ubuntu 12 in AWS
    35  vim gdash.yaml
    37  passenger start
 
+The above gets it up and running with standalone passenger.
+
+I have graphite running behind Apache, so lets integrate it all 
+
+   98  apt-get install libapache2-mod-passenger
+   99  sudo apt-get install libapache2-mod-passenger
+  100  sudo vim /etc/apache2/sites-available/gdash
+  102  sudo a2ensite gdash
+  103  sudo service apache2 reload
+
+Here's "my" site - using basic auth (re-using Nagios in my case)
+
+Listen 8080
+<VirtualHost *:8080>
+    ServerName gdash
+    DocumentRoot /home/manas/gdash/public
+    <Directory /home/manas/gdash/public>
+        Allow from all
+        Options -MultiViews
+    </Directory>
+
+  <Location />
+    AuthName "Gdash Server"
+    AuthType Basic
+    AuthUserFile /etc/nagios3/htpasswd.users
+    <Limit GET>
+      require valid-user
+    </Limit>
+  </Location>
+
+</VirtualHost>
+
