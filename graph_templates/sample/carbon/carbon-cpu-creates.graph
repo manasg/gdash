@@ -1,0 +1,5 @@
+title "Carbon CPU/Commit Points"
+
+area :stacked
+
+field :cpu, :data => "carbon.agents.ip-10-194-117-223-a.cpuUsage"

@@ -1,0 +1,14 @@
+Quick & Dirty notes for installation on Ubuntu 12 in AWS
+
+    6  git clone https://github.com/manasg/gdash
+   12  sudo gem install passenger
+   14  sudo apt-get install libcurl4-openssl-dev libssl-dev   zlib1g-dev 
+   16  sudo gem install bundler
+   18  sudo gem install graphite_graph
+   28  sudo gem install redcarpet -v 2.1.1
+   29  passenger start
+   30  echo 'opened 3000 temporarily'
+   32  cd config/
+   35  vim gdash.yaml
+   37  passenger start
+
